@@ -91,7 +91,7 @@ export default function MiCarrito(props) {
     setTotalCart(aux);
     setProducts(getProduct());
     setReloadCart(false);
-  }, [reloadCart]);
+  }, [reloadCart, setReloadCarrito]);
 
   return (
     <>

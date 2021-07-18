@@ -56,7 +56,7 @@ export default function Register(props) {
         .catch((err) => console.log(err.response));
     }
     fechData();
-  }, []);
+  }, [user]);
 
   const head = [{ name: "Fecha" }, { name: "Total $" }];
 
