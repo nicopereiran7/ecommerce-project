@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ListProducts from "../../../components/User/Perfil/Products/ListProducts";
 import axios from "../../../api/axios";
+import { Helmet } from "react-helmet";
 
 import "./Products.scss";
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [reloadProducts, setReloadProducts] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,11 @@ export default function Products() {
   }, [reloadProducts]);
 
   return (
-    <ListProducts products={products} setReloadProducts={setReloadProducts} />
+    <>
+      <Helmet>
+        <title>Mi Perfil | Productos</title>
+      </Helmet>
+      <ListProducts products={products} setReloadProducts={setReloadProducts} />
+    </>
   );
 }

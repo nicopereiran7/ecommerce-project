@@ -5,14 +5,20 @@
   display: grid;
   place-items: center;
 
-  .productos__header {
-    text-align: center;
-  }
+  .productos {
+    &__header {
+      text-align: center;
 
-  .productos__footer {
-    bottom: 0;
-    position: sticky;
-    padding: 20px;
-    justify-content: center;
+      .detalles {
+      }
+    }
+
+    &__footer {
+      bottom: 0;
+      position: sticky;
+      padding: 20px;
+      justify-content: center;
+      background-color: white;
+    }
   }
 }

@@ -9,6 +9,7 @@ import {
   IconButton,
   Typography,
   Grid,
+  CircularProgress,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
@@ -25,8 +26,8 @@ const useStyles = makeStyles({
 
 function SubCategory(props) {
   const { match } = props;
-  const [subCategory, setSubCategory] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [subCategory, setSubCategory] = useState(null);
+  const [products, setProducts] = useState(null);
   const classes = useStyles();
 
   useEffect(() => {
@@ -49,50 +50,56 @@ function SubCategory(props) {
 
   return (
     <div className="sub-category">
-      <div className="sub-category__header">
-        <h1>{subCategory.name}</h1>
-      </div>
-      <div className="sub-category__content">
-        <Grid container spacing={3} direction="row">
-          {products.map((product, index) => (
-            <Grid item xs={6} sm={3} key={index}>
-              <Card className={classes.root}>
-                <Link to={`/producto/${product.slug}`}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Contemplative Reptile"
-                      height="200"
-                      image={product.image}
-                      title={product.title}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {product.name}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        {product.description}
-                      </Typography>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {`${"$"}${product.prize}`}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Link>
-                <CardActions>
-                  <IconButton>
-                    <AddShoppingCartIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
+      {!subCategory || !products ? (
+        <CircularProgress color="inherit" />
+      ) : (
+        <>
+          <div className="sub-category__header">
+            <h1>{subCategory?.name}</h1>
+          </div>
+          <div className="sub-category__content">
+            <Grid container spacing={3} direction="row">
+              {products.map((product, index) => (
+                <Grid item xs={6} sm={3} key={index}>
+                  <Card className={classes.root}>
+                    <Link to={`/producto/${product.slug}`}>
+                      <CardActionArea>
+                        <CardMedia
+                          component="img"
+                          alt="Contemplative Reptile"
+                          height="200"
+                          image={product.image}
+                          title={product.title}
+                        />
+                        <CardContent>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            {product.name}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                          >
+                            {product.description}
+                          </Typography>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            {`${"$"}${product.prize}`}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Link>
+                    <CardActions>
+                      <IconButton>
+                        <AddShoppingCartIcon />
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

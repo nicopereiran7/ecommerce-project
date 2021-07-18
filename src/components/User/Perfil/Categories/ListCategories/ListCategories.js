@@ -11,6 +11,7 @@ import {
   TablePagination,
   IconButton,
   Snackbar,
+  CircularProgress,
 } from "@material-ui/core";
 import SearchBar from "material-ui-search-bar";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
@@ -137,62 +138,71 @@ export default function ListCategories(props) {
         </div>
       </div>
       <div className="list-categories__content">
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Nombre</TableCell>
-                <TableCell align="right">Acciones</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(rowsPerPage > 0
-                ? searchInput
-                  ? searchCategories.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                  : categories.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                : categories
-              ).map((category, index) => (
-                <TableRow key={index}>
-                  <TableCell>{category?.name}</TableCell>
-                  <TableCell align="right">
-                    <IconButton onClick={() => editCategory(category)}>
-                      <EditIcon color="primary" />
-                    </IconButton>
-                    <IconButton onClick={() => showDialog(category)}>
-                      <DeleteIcon color="error" />
-                    </IconButton>
-                  </TableCell>
+        {!categories ? (
+          <CircularProgress color="inherit" />
+        ) : (
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell align="right">Acciones</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 15, { label: "All", value: -1 }]}
-                  colSpan={3}
-                  count={
-                    searchInput ? searchCategories.length : categories.length
-                  }
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onChangePage={handleChangePage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
-                  labelRowsPerPage={
-                    searchInput
-                      ? "Resultado de Busqueda por Pagina"
-                      : "Categorias Por Pagina"
-                  }
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? searchInput
+                    ? searchCategories.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : categories.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                  : categories
+                ).map((category, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{category?.name}</TableCell>
+                    <TableCell align="right">
+                      <IconButton onClick={() => editCategory(category)}>
+                        <EditIcon color="primary" />
+                      </IconButton>
+                      <IconButton onClick={() => showDialog(category)}>
+                        <DeleteIcon color="error" />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      15,
+                      { label: "All", value: -1 },
+                    ]}
+                    colSpan={3}
+                    count={
+                      searchInput ? searchCategories.length : categories.length
+                    }
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    labelRowsPerPage={
+                      searchInput
+                        ? "Resultado de Busqueda por Pagina"
+                        : "Categorias Por Pagina"
+                    }
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </TableContainer>
+        )}
 
         <Snackbar
           anchorOrigin={{

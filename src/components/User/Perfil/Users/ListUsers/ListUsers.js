@@ -11,6 +11,7 @@ import {
   IconButton,
   Switch,
   Snackbar,
+  CircularProgress,
 } from "@material-ui/core";
 import SearchBar from "material-ui-search-bar";
 import { Alert } from "@material-ui/lab";
@@ -114,69 +115,78 @@ function ListUsers(props) {
         <div className="right"></div>
       </div>
       <div className="list-users__content">
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Nombre</TableCell>
-                <TableCell>Direccion</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Admin</TableCell>
-                <TableCell>Acciones</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(rowsPerPage > 0
-                ? searchInput
-                  ? searchUsers.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                  : users.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                : users
-              ).map((user, index) => (
-                <TableRow key={index}>
-                  <TableCell>{`${user.name} ${user.lastname}`}</TableCell>
-                  <TableCell>{user.direccion}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>
-                    {user.isAdmin ? "Es Admin" : "No es Admin"}
-                  </TableCell>
-                  <TableCell>
-                    <Switch
-                      checked={user.isAdmin}
-                      onChange={(e) => editAdmin(e, user)}
-                    />
-                    <IconButton onClick={() => showDialog(user)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
+        {!users ? (
+          <CircularProgress color="inherit" />
+        ) : (
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell>Direccion</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Admin</TableCell>
+                  <TableCell>Acciones</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[10, 20, 30, { label: "All", value: -1 }]}
-                  colSpan={3}
-                  count={searchInput ? searchUsers.length : users.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onChangePage={handleChangePage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
-                  labelRowsPerPage={
-                    searchInput
-                      ? "Resultado de Busqueda por Pagina"
-                      : "Usuarios Por Pagina"
-                  }
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? searchInput
+                    ? searchUsers.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : users.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                  : users
+                ).map((user, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{`${user.name} ${user.lastname}`}</TableCell>
+                    <TableCell>{user.direccion}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>
+                      {user.isAdmin ? "Es Admin" : "No es Admin"}
+                    </TableCell>
+                    <TableCell>
+                      <Switch
+                        checked={user.isAdmin}
+                        onChange={(e) => editAdmin(e, user)}
+                      />
+                      <IconButton onClick={() => showDialog(user)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    rowsPerPageOptions={[
+                      10,
+                      20,
+                      30,
+                      { label: "All", value: -1 },
+                    ]}
+                    colSpan={3}
+                    count={searchInput ? searchUsers.length : users.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    labelRowsPerPage={
+                      searchInput
+                        ? "Resultado de Busqueda por Pagina"
+                        : "Usuarios Por Pagina"
+                    }
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </TableContainer>
+        )}
 
         <Snackbar
           anchorOrigin={{

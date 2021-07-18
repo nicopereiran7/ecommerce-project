@@ -10,6 +10,7 @@ import {
   IconButton,
   Typography,
   Grid,
+  CircularProgress,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
 
 function Product(props) {
   const { match, select } = props;
-  const [product, setProduct] = useState("");
+  const [product, setProduct] = useState(null);
   const [relacionados, setRelacionados] = useState([]);
   const classes = useStyles();
 
@@ -54,37 +55,46 @@ function Product(props) {
   return (
     <>
       <Helmet>
-        <title>{`MINIMARKET | ${product?.name}`}</title>
+        <title>{product ? `Producto | ${product?.name}` : "Producto"}</title>
       </Helmet>
       <div className="product">
         <div className="product__content">
           <div className="image">
-            <img src={product.image} alt="" />
+            {!product ? (
+              <CircularProgress color="inherit" />
+            ) : (
+              <img src={product.image} alt="" />
+            )}
           </div>
-          <div className="info">
-            <div className="info__content">
-              <h4>{`Stock ${product.stock}`}</h4>
-              <h1>{product.name}</h1>
-              <p>{product.description}</p>
-              <h3>{`${product.peso}${product.type}`}</h3>
-              <div className="prize">
-                <h1>{`${"$"}${product.prize}`}</h1>
+
+          {!product ? (
+            <CircularProgress color="inherit" />
+          ) : (
+            <div className="info">
+              <div className="info__content">
+                <h4>{`Stock ${product.stock}`}</h4>
+                <h1>{product.name}</h1>
+                <p>{product.description}</p>
+                <h3>{`${product.peso}${product.type}`}</h3>
+                <div className="prize">
+                  <h1>{`${"$"}${product.prize}`}</h1>
+                </div>
+              </div>
+              <div className="info__cart">
+                <Button
+                  startIcon={<AddShoppingCartIcon />}
+                  variant="outlined"
+                  onClick={() => select(product)}
+                >
+                  Añadir al Carrito
+                </Button>
+              </div>
+              <div className="info__despacho">
+                <FastForwardIcon fontSize="large" />
+                <LocalShippingIcon fontSize="large" />
               </div>
             </div>
-            <div className="info__cart">
-              <Button
-                startIcon={<AddShoppingCartIcon />}
-                variant="outlined"
-                onClick={() => select(product)}
-              >
-                Añadir al Carrito
-              </Button>
-            </div>
-            <div className="info__despacho">
-              <FastForwardIcon fontSize="large" />
-              <LocalShippingIcon fontSize="large" />
-            </div>
-          </div>
+          )}
         </div>
         <div className="product__relacionados">
           <div className="title">

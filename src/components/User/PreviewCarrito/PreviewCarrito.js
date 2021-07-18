@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -16,6 +16,7 @@ import "./PreviewCarrito.scss";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 300,
+    marginBottom: "10px",
   },
   media: {
     height: 0,
@@ -35,6 +36,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PreviewCarrito() {
   const classes = useStyles();
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    var aux = 0;
+    getProduct().forEach((product) => {
+      aux += product.prize;
+      setTotal(aux);
+    });
+  }, []);
 
   return (
     <div className="preview-carrito">
@@ -42,6 +52,10 @@ export default function PreviewCarrito() {
         <div className="productos">
           <div className="productos__header">
             <h2>Mi Carrito</h2>
+            <div className="detalles">
+              <h3>{`Total: ${"$"}${total}`}</h3>
+              <h3>{`Productos: ${getProduct().length}`}</h3>
+            </div>
           </div>
           <div className="productos__data">
             {getProduct()
@@ -75,7 +89,9 @@ export default function PreviewCarrito() {
           </div>
           <div className="productos__footer">
             <Link to="/mi-carrito">
-              <Button color="primary">Ver mas Detalles</Button>
+              <Button color="secondary" variant="contained">
+                Ver mas Detalles
+              </Button>
             </Link>
           </div>
         </div>

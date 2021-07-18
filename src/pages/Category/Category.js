@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "../../api/axios";
-import { Grid } from "@material-ui/core";
+import { CircularProgress, Grid } from "@material-ui/core";
 import Product from "../../components/Product";
 
 import "./Category.scss";
+import { Helmet } from "react-helmet";
 
 function Category(props) {
   const { match } = props;
   const [category, setCategory] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     axios
@@ -27,20 +28,29 @@ function Category(props) {
   }, [match]);
 
   return (
-    <div className="category">
-      <div className="category__header">
-        <h1>{category.name}</h1>
-      </div>
-      <div className="category__cards">
-        <Grid container spacing={3} direction="row">
-          {data.map((product, index) => (
-            <Grid item xs={6} sm={3} key={index}>
-              <Product product={product} />
+    <>
+      <Helmet>
+        <title>{category ? category.name : "Categoria"}</title>
+      </Helmet>
+      <div className="category">
+        <div className="category__header">
+          <h1>{category.name}</h1>
+        </div>
+        <div className="category__cards">
+          {!data ? (
+            <CircularProgress color="inherit" />
+          ) : (
+            <Grid container spacing={3} direction="row">
+              {data.map((product, index) => (
+                <Grid item xs={6} sm={3} key={index}>
+                  <Product product={product} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
