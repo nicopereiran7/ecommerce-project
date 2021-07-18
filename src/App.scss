@@ -1,0 +1,30 @@
+@import "./scss/index.scss";
+
+.MuiPopover-root {
+  .MuiPaper-root {
+    .MuiList-root {
+      a {
+        text-decoration: none;
+        color: $font-dark;
+      }
+    }
+  }
+}
+
+.MuiTableRow-head {
+  background-color: #000;
+}
+
+.MuiTableRow-root {
+  .MuiTableCell-head {
+    color: $font-light;
+    font-weight: 600;
+  }
+}
+
+.MuiPaper-root {
+  a {
+    text-decoration: none;
+    color: $font-dark;
+  }
+}

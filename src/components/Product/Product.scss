@@ -1,0 +1,22 @@
+@import "../../scss/index.scss";
+
+.MuiPaper-root {
+  .MuiButtonBase-root {
+    // .MuiCardContent-root {
+    //   .prize-product {
+    //     color: $color-primary;
+    //   }
+    // }
+
+    .MuiCardActions-root {
+      .MuiButtonBase-root {
+        .MuiIconButton-label {
+          .MuiSvgIcon-root {
+            color: #092400;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}

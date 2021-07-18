@@ -1,0 +1,143 @@
+@import "../../scss/index.scss";
+
+.home {
+  &__content {
+    width: 100%;
+
+    &-top {
+      width: 100%;
+      min-height: 35vh;
+      background-image: url("https://jpsystems.pe/wp-content/uploads/2020/02/7pasosclavesparatuminimarket.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      object-fit: cover;
+
+      .left {
+        flex: 0.3;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        height: 50px;
+
+        img {
+          width: 50%;
+        }
+
+        .texto {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .center {
+        flex: 0.4;
+        display: flex;
+        justify-content: center;
+
+        img {
+          width: 50%;
+        }
+      }
+
+      .right {
+        flex: 0.3;
+
+        img {
+          width: 80%;
+        }
+      }
+    }
+
+    &-button {
+      .slide {
+        margin: 10px 0;
+        text-align: center;
+        h2 {
+          span {
+            color: $color-primary;
+          }
+        }
+        .product {
+          img {
+            width: 80%;
+          }
+        }
+      }
+      .entrar {
+        display: flex;
+        align-items: center;
+
+        .left {
+          flex: 0.3;
+
+          .info {
+            display: flex;
+            align-items: center;
+
+            p {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        .center {
+          flex: 0.4;
+          display: flex;
+          justify-content: center;
+
+          .btn {
+            display: inline-block;
+            background: transparent;
+            padding: 10px 20px;
+            border: 1px solid $color-primary;
+            box-sizing: border-box;
+            color: $font-dark;
+            font-size: 18px;
+            font-weight: 600;
+
+            span {
+              color: $font-dark;
+            }
+
+            &:hover {
+              transition: 0.5s ease-in-out;
+              cursor: pointer;
+              background: linear-gradient(45deg, #ffcc5d, #ffc038);
+            }
+          }
+        }
+
+        .right {
+          flex: 0.3;
+
+          .info {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            p {
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .home {
+    &__content {
+      &-buttom {
+        .slide {
+          h2 {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}

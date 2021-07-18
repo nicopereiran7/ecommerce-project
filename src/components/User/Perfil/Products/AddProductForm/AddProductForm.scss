@@ -1,0 +1,44 @@
+.add-product-form {
+  .form {
+    display: grid;
+
+    .MuiFormControl-root {
+      margin-top: 10px;
+    }
+
+    .item {
+      display: flex;
+
+      .left {
+        flex: 0.4;
+      }
+
+      .center {
+        flex: 0.4;
+      }
+
+      .right {
+        flex: 0.2;
+
+        .MuiFormControl-root {
+          width: 100%;
+
+          .MuiFormLabel-root {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .image {
+      img {
+        width: 200px;
+        object-fit: cover;
+      }
+    }
+
+    .MuiButtonBase-root {
+      margin-top: 10px;
+    }
+  }
+}

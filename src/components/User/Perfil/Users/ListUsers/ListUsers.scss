@@ -1,0 +1,25 @@
+.list-users {
+  &__header {
+    display: flex;
+
+    .left {
+      flex: 0.3;
+    }
+
+    .right {
+      flex: 0.7;
+      display: flex;
+      justify-content: flex-end;
+
+      .MuiPaper-root {
+        .MuiIconButton-root {
+          padding: 5px;
+        }
+      }
+    }
+  }
+
+  &__content {
+    margin-top: 8px;
+  }
+}

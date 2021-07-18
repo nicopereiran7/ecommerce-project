@@ -1,0 +1,50 @@
+@import "../../../scss/index.scss";
+
+.ingresar {
+  .title {
+    padding: 20px 30px;
+    background-color: $background-primary;
+    text-align: center;
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .login-form {
+    display: grid;
+    margin-top: 20px;
+    text-align: center;
+    padding: 0 50px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .form {
+      display: inline-flex;
+      flex-direction: column;
+
+      .MuiTextField-root {
+        margin-bottom: 10px;
+        width: 300px;
+      }
+
+      .MuiButton-outlinedPrimary {
+        margin-top: 20px;
+      }
+    }
+
+    .sign-up {
+      margin-top: 8px;
+      p {
+        font-weight: 500;
+        span {
+          text-decoration: underline;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

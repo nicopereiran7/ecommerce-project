@@ -1,0 +1,54 @@
+@import "../../scss/index.scss";
+
+.footer {
+  margin-top: 20px;
+  padding: 20px 50px;
+  background-color: $background-dark-light;
+  display: flex;
+  color: #fff;
+  transition: 0.3s ease all;
+
+  &:hover {
+    color: $font-primary;
+  }
+
+  &__left {
+    flex: 0.5;
+
+    .info {
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+
+      .data {
+        margin-left: 6px;
+
+        h4 {
+          font-size: 12px;
+        }
+
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  &__right {
+    flex: 0.5;
+
+    .info {
+      h3 {
+        font-size: 14px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    .redes {
+      margin-top: 10px;
+    }
+  }
+}

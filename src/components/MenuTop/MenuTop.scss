@@ -1,0 +1,108 @@
+@import "../../scss/index.scss";
+
+.menu-top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 5px 6px -6px #777;
+
+  &__top {
+    display: flex;
+    background: $background-primary;
+    padding: 2px 50px;
+
+    h4 {
+      font-weight: 700;
+      font-size: 12px;
+      margin-right: 20px;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: $background-light;
+
+    .left {
+      flex: 0.3;
+
+      a {
+        text-decoration: none;
+
+        h2 {
+          color: $color-primary;
+          font-weight: 700;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .center {
+      flex: 0.4;
+      display: flex;
+      justify-content: center;
+
+      .active {
+        color: $font-primary;
+      }
+
+      a {
+        color: $font-dark;
+        text-decoration: none;
+        margin-right: 20px;
+        transition: 0.5s ease all;
+        font-weight: 600;
+
+        &:hover {
+          color: $font-primary;
+        }
+      }
+    }
+
+    .right {
+      flex: 0.3;
+      display: flex;
+      justify-content: flex-end;
+      a {
+        color: $color-primary;
+      }
+
+      .MuiSvgIcon-root {
+        padding-left: 20px;
+        transition: 0.5s ease-in-out;
+
+        &:hover {
+          cursor: pointer;
+          color: $color-grey;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .menu-top {
+    &__top {
+      h4 {
+        font-size: 8px;
+      }
+    }
+    &__button {
+      padding: 10px 25px;
+
+      .left {
+        a {
+          h2 {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

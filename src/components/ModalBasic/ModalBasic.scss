@@ -1,0 +1,11 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .MuiSvgIcon-root {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

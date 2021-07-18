@@ -1,0 +1,72 @@
+@import "../../scss/index.scss";
+
+.comprar {
+  &__banner {
+    .spam {
+      display: flex;
+      align-items: center;
+
+      .left {
+        flex: 0.3;
+        display: flex;
+        align-items: center;
+
+        .MuiSvgIcon-root {
+          &:hover {
+            cursor: pointer;
+            color: $color-grey;
+          }
+        }
+      }
+
+      .right {
+        flex: 0.7;
+        display: flex;
+        justify-content: flex-end;
+
+        h4 {
+          font-weight: 400;
+        }
+      }
+    }
+
+    .categories {
+      display: flex;
+    }
+  }
+
+  &__content {
+    padding: 10px 0;
+    min-height: 82vh;
+
+    .filters {
+      display: flex;
+      align-items: center;
+
+      &__left {
+        flex: 0.3;
+      }
+
+      &__centro {
+        flex: 0.4;
+      }
+
+      &__right {
+        flex: 0.3;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    .list-products {
+      margin-top: 20px;
+
+      .MuiGrid-root {
+        a {
+          text-decoration: none;
+          color: $font-dark;
+        }
+      }
+    }
+  }
+}

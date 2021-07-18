@@ -1,0 +1,20 @@
+.perfil {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+
+  &__data {
+    padding: 20px 0;
+    display: flex;
+
+    &-info {
+      padding: 0 10px;
+    }
+  }
+}

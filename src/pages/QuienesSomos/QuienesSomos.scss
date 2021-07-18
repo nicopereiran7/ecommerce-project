@@ -1,0 +1,18 @@
+.quienes-somos {
+  min-height: 85vh;
+  display: flex;
+
+  &__image {
+    flex: 0.3;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  &__mi-info {
+    flex: 0.7;
+    margin-left: 20px;
+  }
+}

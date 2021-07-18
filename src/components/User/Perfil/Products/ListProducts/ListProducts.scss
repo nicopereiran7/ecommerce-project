@@ -1,0 +1,27 @@
+.list-products {
+  &__header {
+    display: flex;
+    align-items: center;
+
+    .left {
+      flex: 0.3;
+    }
+
+    .right {
+      flex: 0.7;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .MuiPaper-root {
+        .MuiIconButton-root {
+          padding: 5px;
+        }
+      }
+    }
+  }
+
+  &__data {
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,42 @@
+@import "../../scss/index.scss";
+
+.sin-productos {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+
+  .alert {
+    display: flex;
+    color: $color-grey;
+  }
+}
+
+.mi-carrito {
+  display: flex;
+  min-height: 85vh;
+
+  &__products {
+    flex-grow: 1;
+
+    .pagar {
+      background-color: #ffffff;
+      display: flex;
+      padding: 8px 0;
+
+      .left {
+        flex: 0.4;
+      }
+
+      .right {
+        flex: 0.6;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    .cards {
+      margin-top: 20px;
+    }
+  }
+}

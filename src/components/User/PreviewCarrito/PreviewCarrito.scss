@@ -1,0 +1,18 @@
+@import "../../../scss/index.scss";
+
+.preview-carrito {
+  padding: 20px;
+  display: grid;
+  place-items: center;
+
+  .productos__header {
+    text-align: center;
+  }
+
+  .productos__footer {
+    bottom: 0;
+    position: sticky;
+    padding: 20px;
+    justify-content: center;
+  }
+}

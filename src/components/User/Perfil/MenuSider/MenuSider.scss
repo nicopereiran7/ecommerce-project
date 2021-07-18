@@ -1,0 +1,33 @@
+@import "../../../../scss/index.scss";
+
+.menu-sider {
+  flex: 0.2;
+  min-height: 82vh;
+
+  .MuiList-root {
+    position: sticky;
+    top: 0;
+  }
+
+  .MuiList-padding {
+    padding-top: 0 !important;
+  }
+
+  nav {
+    a {
+      display: flex;
+      align-items: center;
+      color: $font-dark;
+      text-decoration: none;
+    }
+  }
+
+  .MuiListItem-gutters {
+    padding-left: 0 !important;
+    align-items: center;
+
+    .MuiSvgIcon-root {
+      margin-right: 8px;
+    }
+  }
+}

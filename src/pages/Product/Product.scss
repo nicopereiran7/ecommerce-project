@@ -1,0 +1,66 @@
+@import "../../scss/index.scss";
+
+.product {
+  padding: 10px 0;
+
+  &__content {
+    display: flex;
+
+    .image {
+      flex: 0.4;
+
+      img {
+        max-width: 500px;
+      }
+    }
+
+    .info {
+      flex: 0.6;
+      padding-left: 20px;
+
+      &__content {
+        h1 {
+          font-size: 40px;
+          font-weight: 700;
+        }
+
+        h3 {
+          font-size: 16px;
+          color: $font-grey;
+        }
+
+        .prize {
+          h1 {
+            font-size: 40px;
+          }
+        }
+      }
+
+      &__cart {
+        margin-top: 20px;
+        .MuiButtonBase-root {
+          background-color: $btn-cart;
+        }
+      }
+
+      &__despacho {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__relacionados {
+    margin-top: 20px;
+    border-top: 1px solid #807d7d;
+
+    .title {
+      padding: 20px 0;
+
+      h2 {
+        span {
+          color: $font-primary;
+        }
+      }
+    }
+  }
+}
