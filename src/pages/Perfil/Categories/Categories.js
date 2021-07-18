@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ListCategories from "../../../components/User/Perfil/Categories/ListCategories";
 import axios from "../../../api/axios";
+import { Helmet } from "react-helmet";
 
 export default function Categories() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(null);
   const [reloadCategories, setReloadCategories] = useState(false);
 
   useEffect(() => {
@@ -20,9 +21,14 @@ export default function Categories() {
   }, [reloadCategories]);
 
   return (
-    <ListCategories
-      categories={categories}
-      setReloadCategories={setReloadCategories}
-    />
+    <>
+      <Helmet>
+        <title>Mi Perfil | Categorias</title>
+      </Helmet>
+      <ListCategories
+        categories={categories}
+        setReloadCategories={setReloadCategories}
+      />
+    </>
   );
 }

@@ -20,6 +20,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import axios from "../../../api/axios";
 import moment from "moment";
+import { Helmet } from "react-helmet";
 
 import "./Register.scss";
 
@@ -61,49 +62,54 @@ export default function Register(props) {
   const head = [{ name: "Fecha" }, { name: "Total $" }];
 
   return (
-    <div className="register">
-      <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                Total de Carritos
-              </Typography>
-              <Typography variant="h5" component="h2">
-                {cartsUser.length}
-              </Typography>
-            </CardContent>
-          </Card>
+    <>
+      <Helmet>
+        <title>Mi Perfil | Mis Carritos</title>
+      </Helmet>
+      <div className="register">
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Card className={classes.root}>
+              <CardContent>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  Total de Carritos
+                </Typography>
+                <Typography variant="h5" component="h2">
+                  {cartsUser.length}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={6}>
+            {cartsUser ? (
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableCell />
+                    {head.map((item, index) => (
+                      <TableCell key={index} align="right">
+                        {item.name}
+                      </TableCell>
+                    ))}
+                  </TableHead>
+                  <TableBody>
+                    {cartsUser.map((cart, index) => (
+                      <Row key={index} cart={cart} />
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            ) : (
+              <h2>Aun no ha realizado compras</h2>
+            )}
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          {cartsUser ? (
-            <TableContainer component={Paper}>
-              <Table>
-                <TableHead>
-                  <TableCell />
-                  {head.map((item, index) => (
-                    <TableCell key={index} align="right">
-                      {item.name}
-                    </TableCell>
-                  ))}
-                </TableHead>
-                <TableBody>
-                  {cartsUser.map((cart, index) => (
-                    <Row key={index} cart={cart} />
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ) : (
-            <h2>Aun no ha realizado compras</h2>
-          )}
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -147,9 +153,7 @@ function Row(props) {
                 <TableBody>
                   {cart.product.map((product, index) => (
                     <TableRow key={index}>
-                      <TableCell component="th" scope="row">
-                        {product.name}
-                      </TableCell>
+                      <TableCell scope="row">{product.name}</TableCell>
                       <TableCell align="right">{product.prize}</TableCell>
                     </TableRow>
                   ))}

@@ -11,6 +11,7 @@ import {
   TablePagination,
   IconButton,
   Snackbar,
+  CircularProgress,
 } from "@material-ui/core";
 import SearchBar from "material-ui-search-bar";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
@@ -142,66 +143,77 @@ export default function ListProducts(props) {
         </div>
       </div>
       <div className="list-products__data">
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Nombre</TableCell>
-                <TableCell>Sub-Categoria</TableCell>
-                <TableCell>Peso</TableCell>
-                <TableCell>Precio</TableCell>
-                <TableCell>Descuento</TableCell>
-                <TableCell>Stock</TableCell>
-                <TableCell align="right">Acciones</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(rowsPerPage > 0
-                ? searchInput
-                  ? searchProducts.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                  : products.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                : products
-              ).map((product, index) => (
-                <TableRow key={index}>
-                  <TableCell>{product?.name}</TableCell>
-                  <TableCell>{product?.subCategory.name}</TableCell>
-                  <TableCell>{`${product?.peso}${product?.type}`}</TableCell>
-                  <TableCell>{product?.prize}</TableCell>
-                  <TableCell>{product?.descuento}</TableCell>
-                  <TableCell>{product?.stock}</TableCell>
-                  <TableCell align="right">
-                    <IconButton onClick={() => editProduct(product)}>
-                      <EditIcon color="primary" />
-                    </IconButton>
-                    <IconButton onClick={() => showDialog(product)}>
-                      <DeleteIcon color="error" />
-                    </IconButton>
-                  </TableCell>
+        {!products ? (
+          <CircularProgress color="inherit" />
+        ) : (
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell>Sub-Categoria</TableCell>
+                  <TableCell>Peso</TableCell>
+                  <TableCell>Precio</TableCell>
+                  <TableCell>Descuento</TableCell>
+                  <TableCell>Stock</TableCell>
+                  <TableCell align="right">Acciones</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 15, { label: "All", value: -1 }]}
-                  colSpan={3}
-                  count={searchInput ? searchProducts.length : products.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onChangePage={handleChangePage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
-                  labelRowsPerPage={"Productos Por Pagina"}
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? searchInput
+                    ? searchProducts.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : products.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                  : products
+                ).map((product, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{product?.name}</TableCell>
+                    <TableCell>{product?.subCategory.name}</TableCell>
+                    <TableCell>{`${product?.peso}${product?.type}`}</TableCell>
+                    <TableCell>{product?.prize}</TableCell>
+                    <TableCell>{product?.descuento}</TableCell>
+                    <TableCell>{product?.stock}</TableCell>
+                    <TableCell align="right">
+                      <IconButton onClick={() => editProduct(product)}>
+                        <EditIcon color="primary" />
+                      </IconButton>
+                      <IconButton onClick={() => showDialog(product)}>
+                        <DeleteIcon color="error" />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      15,
+                      { label: "All", value: -1 },
+                    ]}
+                    colSpan={3}
+                    count={
+                      searchInput ? searchProducts.length : products.length
+                    }
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    labelRowsPerPage={"Productos Por Pagina"}
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </TableContainer>
+        )}
 
         <Snackbar
           anchorOrigin={{

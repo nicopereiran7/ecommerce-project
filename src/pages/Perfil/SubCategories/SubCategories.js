@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListSubCategories from "../../../components/User/Perfil/SubCategories/ListSubCategories";
 import axios from "../../../api/axios";
+import { Helmet } from "react-helmet";
 
 export default function SubCategories() {
   const [subCategories, setSubCategories] = useState([]);
@@ -20,9 +21,14 @@ export default function SubCategories() {
   }, [reloadSubCategories]);
 
   return (
-    <ListSubCategories
-      subCategories={subCategories}
-      setReloadSubCategories={setReloadSubCategories}
-    />
+    <>
+      <Helmet>
+        <title>Mi Perfil | Sub-Categorias</title>
+      </Helmet>
+      <ListSubCategories
+        subCategories={subCategories}
+        setReloadSubCategories={setReloadSubCategories}
+      />
+    </>
   );
 }

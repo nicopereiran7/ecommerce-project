@@ -77,21 +77,25 @@ export default function MiCarrito(props) {
     }
   };
 
-  const removeProduct = useCallback((item) => {
-    deleteProduct(item);
-    setReloadCart(true);
-    setReloadCarrito(true);
-  }, []);
+  const removeProduct = useCallback(
+    (item) => {
+      deleteProduct(item);
+      setReloadCart(true);
+      setReloadCarrito(true);
+    },
+    [setReloadCarrito]
+  );
 
   useEffect(() => {
     var aux = 0;
-    getProduct().map((product) => {
+    var data = getProduct();
+    data.forEach((product) => {
       aux = aux + product.prize;
     });
     setTotalCart(aux);
     setProducts(getProduct());
     setReloadCart(false);
-  }, [reloadCart, setReloadCarrito]);
+  }, [reloadCart, setReloadCarrito]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
